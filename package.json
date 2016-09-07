@@ -1,0 +1,22 @@
+{
+  "name": "pokedex",
+  "version": "1.0.0",
+  "description": "This is a Pokedex built in Angular and Express",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/damonnguyen92/basic-pokedex.git"
+  },
+  "author": "Damon Nguyen",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/damonnguyen92/basic-pokedex/issues"
+  },
+  "homepage": "https://github.com/damonnguyen92/basic-pokedex#readme",
+  "dependencies": {
+    "angular": "^1.5.8"
+  }
+}
