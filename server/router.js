@@ -7,11 +7,10 @@ const bodyParser = require('body-parser');
 
 app.use(bodyParser.json()); 
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(express.static(path.join(__dirname, '../assets')));
+app.use(express.static(path.join(__dirname, '../public')));
 
 app.get('/', function(req, res) {
-  console.log('logging on path /!');
-  res.sendFile(__dirname + '/assets/index.html');
+  res.sendFile('/assets/index.html');
 });
 
 module.exports = app;
