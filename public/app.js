@@ -1,5 +1,5 @@
 angular.module('Pokedex', [
-  'SearchBar',
+  'List',
   'ui.router',
 ])
 
@@ -8,8 +8,8 @@ angular.module('Pokedex', [
   $stateProvider
   .state('home', {
     url: '/home',
-    templateUrl: './components/searchBar/searchBarView.html',
-    controller: './components/searchBar/searchBarController'
+    templateUrl: 'components/list/listView.html',
+    controller: 'ListController'
   })
 }])
 .run(['$location', '$state', function ($location, $state) {
