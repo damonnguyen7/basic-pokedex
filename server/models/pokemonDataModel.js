@@ -36,7 +36,8 @@ var getPokemonData = function(pokemon) {
               return moveObj.move.name;
             });
             arrayOfPokemon.push(pokemonObj);
-            if (arrayOfPokemon.length === 9) {
+            if (arrayOfPokemon.length === 151) {
+              console.log('arrayOfPokemon.length', arrayOfPokemon.length);
               resolve({
                 data: {pokemonData: arrayOfPokemon}
               });
