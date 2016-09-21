@@ -1,3 +1,8 @@
+.listContainer {
+  width: 135px;
+  height: 650px
+}
+
 .listOfPokemon {
   width: 135px;
   height: 650px;
