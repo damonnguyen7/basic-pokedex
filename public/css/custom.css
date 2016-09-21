@@ -1,0 +1,21 @@
+.listOfPokemon {
+  width: 135px;
+  height: 650px;
+  padding: 0 0 0 0;
+  overflow: scroll;
+}
+
+.list-group-item {
+  width: 120px;
+  font-size: 16px;
+}
+
+.list-group-item:hover {
+  background-color: #ddd;
+  cursor: pointer;
+}
+
+::-webkit-scrollbar {
+    width: 0px;  /* remove scrollbar space */
+    background: transparent;  /* optional: just make scrollbar invisible */
+}
