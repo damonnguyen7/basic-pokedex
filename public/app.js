@@ -1,5 +1,6 @@
 angular.module('Pokedex', [
   'List',
+  'ProfilePicture',
   'ui.router',
 ])
 
@@ -10,6 +11,11 @@ angular.module('Pokedex', [
     url: '/home',
     templateUrl: 'components/list/listView.html',
     controller: 'ListController'
+  })
+  .state('home.selected', {
+    url: '/home/{pokemonId}',
+    templateUrl: 'components/profilePicture/profilePicture.html',
+    controller: 'ProfilePicture'
   })
 }])
 .run(['$location', '$state', function ($location, $state) {
