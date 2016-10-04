@@ -18,6 +18,6 @@ const getPokemonData = require('./controllers/getPokemon');
 
 
 //Handle POST request:
-app.post('/home', getPokemonData.post);
+// app.post('/home', getPokemonData.post);
 
 module.exports = app;
