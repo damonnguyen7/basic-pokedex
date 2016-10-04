@@ -10,7 +10,7 @@
     //pokemon li onclick will change the path and define selectedPokemon
     $scope.selectedPokemonPathChange = function($event) {
       var selectedPokemon = $event.target.innerHTML;
-      $location.url('/home/' + selectedPokemon);
+      $location.url(selectedPokemon);
       $scope.selectedPokemon = selectedPokemon;
     }
   })
