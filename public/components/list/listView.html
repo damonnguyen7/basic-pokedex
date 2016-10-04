@@ -1,6 +1,6 @@
-<div class="listContainer" ng-controller='ListController'>
+<div class="listContainer">
   <h5>Select a Pokemon</h5>
   <ul class="listOfPokemon">
-    <li class="list-group-item" ng-repeat="pokemon in pokemonList">{{pokemon}}</li>
+    <li id="{{$index}}" class="list-group-item" ng-repeat="pokemon in pokemonList" ng-click="logClick()">{{pokemon}}</li>
   </ul>
 </div>
