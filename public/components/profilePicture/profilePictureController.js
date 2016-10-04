@@ -1,4 +1,9 @@
-angular.module('ProfilePicture', [])
-.controller('ProfilePictureController', function() {
+(function() {
+  'use strict';
 
-});
+  angular.module('Pokedex.ProfilePicture', [])
+  .controller('ProfilePictureController', function($stateParams) {
+    console.log('$stateParams: ', $stateParams);
+  });
+
+})();
