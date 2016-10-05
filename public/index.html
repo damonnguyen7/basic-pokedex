@@ -14,6 +14,7 @@
 
   <!-- CONTAINER FOR COMPONENTS -->
   <div class="container">
+    <div ui-view="navbar"></div>
     <div ui-view="list"></div>
     <div ui-view="profilePicture"></div>
   </div>
@@ -27,6 +28,7 @@
 
   <!-- MODULE DEPENDENCIES -->
   <script src="./app.js"></script>
+  <script src="components/navbar/navbarController.js"></script>
   <script src="components/list/listController.js"></script>
   <script src="components/profilePicture/profilePictureController.js"></script>
 </body>
