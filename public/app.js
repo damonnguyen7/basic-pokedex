@@ -1,13 +1,14 @@
 angular.module('Pokedex', [
   'Pokedex.List',
   'Pokedex.ProfilePicture',
+  'Pokedex.Navbar',
   'ui.router',
 ])
 .config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
-  $urlRouterProvider.otherwise('/');
+  $urlRouterProvider.otherwise('/home');
   $stateProvider
     .state('home', {
-      url: '/',
+      url: '/home',
       views: {
         'list': {
           templateUrl: 'components/list/listView.html',
@@ -16,6 +17,10 @@ angular.module('Pokedex', [
         'profilePicture': {
           templateUrl: 'components/profilePicture/profilePicture.html',
           controller: 'ProfilePictureController'
+        },
+        'navbar': {
+          templateUrl: 'components/navbar/navbarView.html',
+          controller: 'NavbarController'
         }
       }
     })
