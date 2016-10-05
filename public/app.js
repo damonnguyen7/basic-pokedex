@@ -15,7 +15,7 @@ angular.module('Pokedex', [
         },
         'profilePicture': {
           templateUrl: 'components/profilePicture/profilePicture.html',
-          controller: 'ProfilePicture'
+          controller: 'ProfilePictureController'
         }
       }
     })
