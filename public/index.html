@@ -2,18 +2,21 @@
 <html>
 <head>
   <title>Pokedex</title>
+  <!-- INTERNET EXPLORER COMPATIBILITY  -->
+  <!--[if lt IE 9]>
+    <script src="dist/html5shiv.js"></script>
+  <![endif]-->
+  <!-- STYLESHEET -->
   <link rel='stylesheet' href='css/bootstrap.css'>
   <link rel='stylesheet' href='css/custom.css'>
 </head>
 <body ng-app="Pokedex">
 
+  <!-- CONTAINER FOR COMPONENTS -->
   <div class="container">
     <div ui-view="list"></div>
     <div ui-view="profilePicture"></div>
   </div>
-
-
-
 
   <!-- LIBRARY   -->
   <script src="lib/angular-ui-router.min.js"></script>
