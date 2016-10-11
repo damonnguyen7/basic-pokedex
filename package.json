@@ -7,6 +7,10 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js"
   },
+  "engines": {
+    "node": "4.5.0",
+    "npm": "2.15.9"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/damonnguyen92/basic-pokedex.git"
