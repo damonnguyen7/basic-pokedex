@@ -1,0 +1,24 @@
+<div class="container">
+  <div class="row text-center">
+    <span ng-click="goBack()"><-Back</span>
+    <h1>{{pokemonInfo.name}}({{pokemonInfo.id}})</h1>
+  </div>
+  <div class="row text-center">
+    <img class="profile-pokemon-img" src="/img/{{pokemonInfo.id}}.png">  
+  </div>
+  <div class="row text-center">
+    <div class="col-xs-12">
+      <h2>height: {{pokemonInfo.height}}</h2>
+      <h2>weight: {{pokemonInfo.weight}}</h2>
+      <h2>Stats</h2>
+      <ul class="list-group">
+        <li class="list-group-item" ng-repeat="stat in pokemonInfo.stats">{{stat}}</li>
+      </ul>
+      <h2>Moves</h2>
+      <ul class="list-group">
+        <li class="list-group-item" ng-repeat="move in pokemonInfo.moves">{{move}}</li>
+      </ul>
+    </div>
+  </div>
+  
+</div>

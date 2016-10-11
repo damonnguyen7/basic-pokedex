@@ -1,28 +1,27 @@
 angular.module('Pokedex', [
-  'Pokedex.List',
+  'Pokedex.Home',
   'Pokedex.ProfilePicture',
-  'Pokedex.Navbar',
   'ui.router',
 ])
 .config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
-  $urlRouterProvider.otherwise('/home');
+  // $urlRouterProvider.otherwise('/home');
   $stateProvider
     .state('home', {
-      url: '/home',
-      views: {
-        'list': {
-          templateUrl: 'components/list/listView.html',
-          controller: 'ListController'
-        },
-        'profilePicture': {
-          templateUrl: 'components/profilePicture/profilePicture.html',
-          controller: 'ProfilePictureController'
-        },
-        'navbar': {
-          templateUrl: 'components/navbar/navbarView.html',
-          controller: 'NavbarController'
-        }
-      }
+      url: '/',
+      templateUrl: 'components/home/homeView.html',
+      controller: 'HomeController'
     })
+    .state('profilePicture', {
+      url: '/',
+      templateUrl: 'components/profilePicture/profilePicture.html',
+      controller: 'ProfilePictureController'
+    })
+    //if pokemon not selected
+    .state('notSelected', {
+      url: '/stats',
+      templateUrl: 'partials/pleaseSelectPokemon.html',
+    })
+    //else if selected
+
 }])
   

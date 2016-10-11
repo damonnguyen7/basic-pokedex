@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Pokedex</title>
+  <!-- INTERNET EXPLORER COMPATIBILITY  -->
+  <!--[if lt IE 9]>
+    <script src="js/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+  <!-- STYLESHEET -->
+  <link rel='stylesheet' href='css/bootstrap.css'>
+  <link rel='stylesheet' href='css/custom.css'>
+</head>
+<body ng-app="Pokedex">
+  <!-- CONTAINER FOR COMPONENTS -->
+  <div ui-view></div>
+
+  <!-- LIBRARY   -->
+  <script src="lib/angular.js"></script>
+  <script src="lib/angular-ui-router.js"></script>
+  <script src="lib/angular-animate.min.js"></script>
+  <script src="lib/jquery.min.js"></script>
+
+  <script>
+    var pokemonData = {{{pokemonData}}};
+  </script>
+
+  <!-- MODULE DEPENDENCIES -->
+  <script>
+    angular.module('Pokedex', ['Home', 'Profile','ui.router'])
+    .config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
+      // $urlRouterProvider.otherwise('/home');
+      $stateProvider
+        .state('home', {
+          url: '/{query}',
+          templateUrl: '/views/homeView.html',
+          controller: 'HomeController'
+        })
+        .state('profile', {
+          url: '/profile/{id}',
+          templateUrl: '/views/profile.html',
+          controller: 'ProfileController'
+        })
+        //if pokemon not selected
+        .state('notSelected', {
+          url: '/stats',
+          templateUrl: '/partials/pleaseSelectPokemon.html',
+        })
+        //else if selected
+    }]);
+      
+    angular.module('Home', [])
+    .controller('HomeController', function($scope, $state, $location, $log, $stateParams) {
+      $scope.query = $stateParams.query;
+      
+      $scope.displayResults = function () {
+        var matches = pokemonData.filter(function(pokemonObj) {
+          var queryRegexp = new RegExp($scope.query, 'i');
+          return pokemonObj.name.match(queryRegexp);
+        });
+        $scope.results = matches;
+        $state.go('home', {query: $scope.query}, {
+          notify: false
+        });
+
+      };
+
+      $scope.displayResults($scope.query);
+    })
+    angular.module('Profile', [])
+    .controller('ProfileController', function($scope, $stateParams) {
+      var id = parseInt($stateParams.id, 10) - 1;
+      $scope.pokemonInfo = pokemonData[id];
+
+      $scope.goBack = function () {
+        history.go(-1)
+      };
+    });
+  </script>
+</body>
+</html>

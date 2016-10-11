@@ -1,35 +1,4 @@
-
-.container {
-  margin-left: 0px;
-  margin-right: 0px;
-  padding-left: 0px;
-  padding-right: 0px;
-  width: 1280px;  
-}
-
-.listContainer {
-  width: 135px;
-  height: 650px
-}
-
-.listOfPokemon {
-  width: 135px;
-  height: 650px;
-  padding: 0 0 0 0;
-  overflow: scroll;
-}
-
-.list-group-item {
-  width: 120px;
-  font-size: 16px;
-}
-
-.list-group-item:hover {
-  background-color: #ddd;
-  cursor: pointer;
-}
-
-::-webkit-scrollbar {
-    width: 0px;  /* remove scrollbar space */
-    background: transparent;  /* optional: just make scrollbar invisible */
+.profile-pokemon-img {
+  height: 250px;
+  weight: 250px;
 }
