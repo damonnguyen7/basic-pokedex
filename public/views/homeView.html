@@ -6,6 +6,9 @@
     <div class="col-xs-4 col-xs-offset-4">
       <input ng-model="query" ng-change="displayResults()" class="form-control" type="text" placeholder="enter pokemon name"/>
     </div>
+    <div class="col-xs-1">
+      <i class="fa fa-search fa-2x" aria-hidden="true"></i>
+    </div>
   </div>
   <div ng-if="query.length > 0" class="row">
     <h2>Search Results</h2>
