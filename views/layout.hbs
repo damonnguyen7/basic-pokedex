@@ -8,6 +8,7 @@
   <![endif]-->
   <!-- STYLESHEET -->
   <link rel='stylesheet' href='css/bootstrap.css'>
+  <link rel='stylesheet' href='css/font-awesome.css'>
   <link rel='stylesheet' href='css/custom.css'>
 </head>
 <body ng-app="Pokedex">
@@ -15,10 +16,12 @@
   <div ui-view></div>
 
   <!-- LIBRARY   -->
-  <script src="lib/angular.js"></script>
-  <script src="lib/angular-ui-router.js"></script>
+  <script src="lib/angular.min.js"></script>
+  <script src="lib/angular-ui-router.min.js"></script>
   <script src="lib/angular-animate.min.js"></script>
   <script src="lib/jquery.min.js"></script>
+  <script src="lib/Chart.js"></script>
+  <script src="lib/angular-chart.js"></script>
 
   <script>
     var pokemonData = {{{pokemonData}}};
@@ -26,7 +29,7 @@
 
   <!-- MODULE DEPENDENCIES -->
   <script>
-    angular.module('Pokedex', ['Home', 'Profile','ui.router'])
+    angular.module('Pokedex', ['Home', 'Profile','ui.router', 'chart.js'])
     .config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
       // $urlRouterProvider.otherwise('/home');
       $stateProvider
@@ -50,6 +53,7 @@
       
     angular.module('Home', [])
     .controller('HomeController', function($scope, $state, $location, $log, $stateParams) {
+      $scope.clean = false;
       $scope.query = $stateParams.query;
       
       $scope.displayResults = function () {
@@ -61,8 +65,13 @@
         $state.go('home', {query: $scope.query}, {
           notify: false
         });
-
+        $scope.clean = true;
       };
+
+      $scope.setDirty = function (){
+        $scope.clean = false;
+      }
+
 
       $scope.displayResults($scope.query);
     })
@@ -70,10 +79,25 @@
     .controller('ProfileController', function($scope, $stateParams) {
       var id = parseInt($stateParams.id, 10) - 1;
       $scope.pokemonInfo = pokemonData[id];
-
+      var pokemonStats = $scope.pokemonInfo.stats;
+      console.log('pokemon moves: ', pokemonData[id].moves);
+  
       $scope.goBack = function () {
         history.go(-1)
       };
+
+      $scope.labels = ['Hp', 'Attack', 'Defense', 'Speed', 'Special-attack', 'Special-defense'];
+      $scope.series = ['Points'];
+      // $scope.colours = ['#72C02C', '#3498DB', '#717984', '#F1C40F'];
+      $scope.data = [
+        [pokemonStats[0][1],
+         pokemonStats[1][1], 
+         pokemonStats[2][1], 
+         pokemonStats[3][1], 
+         pokemonStats[4][1], 
+         pokemonStats[5][1]]
+         ];
+
     });
   </script>
 </body>
