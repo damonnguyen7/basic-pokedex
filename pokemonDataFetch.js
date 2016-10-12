@@ -24,7 +24,7 @@ function pickOffValues(pokemonResponse){
     } 
   });
   pokemonObj.moves = pokemonResponse.moves.map(function(moveObj) {
-    return moveObj.move.name;
+    return moveObj.move;
   });
   return pokemonObj;
 }
