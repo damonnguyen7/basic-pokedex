@@ -22,8 +22,10 @@
   },
   "homepage": "https://github.com/damonnguyen92/basic-pokedex#readme",
   "dependencies": {
+    "angular-chart.js": "^1.0.3",
     "async": "^2.0.1",
     "body-parser": "^1.15.2",
+    "chart.js": "^2.3.0",
     "express": "^4.14.0",
     "hbs": "^4.0.1",
     "nodemon": "^1.10.2",
