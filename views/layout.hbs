@@ -25,11 +25,12 @@
 
   <script>
     var pokemonData = {{{pokemonData}}};
+    var moveData;
   </script>
 
   <!-- MODULE DEPENDENCIES -->
   <script>
-    angular.module('Pokedex', ['Home', 'Profile','ui.router', 'chart.js'])
+    angular.module('Pokedex', ['Home', 'Profile', 'MoveDetail','ui.router', 'chart.js'])
     .config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
       // $urlRouterProvider.otherwise('/home');
       $stateProvider
@@ -40,15 +41,23 @@
         })
         .state('profile', {
           url: '/profile/{id}',
-          templateUrl: '/views/profile.html',
-          controller: 'ProfileController'
+          views: {
+            '': {
+              templateUrl: '/views/profile.html',
+              controller: 'ProfileController'
+            },
+            'moveDetail@profile': {
+              templateUrl:'/views/moveDetail.html',
+              controller: 'RadarCtrl'
+            }
+          }
         })
         //if pokemon not selected
         .state('notSelected', {
           url: '/stats',
           templateUrl: '/partials/pleaseSelectPokemon.html',
         })
-        //else if selected
+
     }]);
       
     angular.module('Home', [])
@@ -68,27 +77,42 @@
         $scope.clean = true;
       };
 
+      $scope.goToResult = function() {
+        console.log('enter key fired');
+      }
+
       $scope.setDirty = function (){
         $scope.clean = false;
       }
 
-
       $scope.displayResults($scope.query);
     })
+    .directive('ngEnter', function () {
+        return function (scope, element, attrs) {
+            element.bind("keydown keypress", function (event) {
+                if(event.which === 13) {
+                    scope.$apply(function (){
+                        scope.$eval(attrs.ngEnter);
+                    });
+     
+                    event.preventDefault();
+                }
+            });
+        };
+    });
+
     angular.module('Profile', [])
     .controller('ProfileController', function($scope, $stateParams) {
       var id = parseInt($stateParams.id, 10) - 1;
       $scope.pokemonInfo = pokemonData[id];
       var pokemonStats = $scope.pokemonInfo.stats;
-      console.log('pokemon moves: ', pokemonData[id].moves);
-  
+
       $scope.goBack = function () {
         history.go(-1)
       };
 
       $scope.labels = ['Hp', 'Attack', 'Defense', 'Speed', 'Special-attack', 'Special-defense'];
       $scope.series = ['Points'];
-      // $scope.colours = ['#72C02C', '#3498DB', '#717984', '#F1C40F'];
       $scope.data = [
         [pokemonStats[0][1],
          pokemonStats[1][1], 
@@ -96,8 +120,62 @@
          pokemonStats[3][1], 
          pokemonStats[4][1], 
          pokemonStats[5][1]]
-         ];
+      ];
 
+    })
+
+  // NOT WORKING..
+  angular.module('MoveDetail', [])
+    .controller("RadarCtrl", function ($scope, $timeout, RadarService) {
+      var vm = $scope;
+      vm.labels = RadarService.labels;
+      vm.series = RadarService.series;
+      vm.data = RadarService.data;
+      vm.changeDataSet = RadarService.changeDataSet;
+
+      vm.onClick = function () {
+        vm.data = [[], []];
+        var newData = vm.changeDataSet();
+        newData[0].forEach(function(data) {
+          vm.data[0].push(data);
+        });
+        newData[1].forEach(function(data) {
+          vm.data[1].push(data);
+        });
+        console.log('vm.data: ', vm.data);
+      };
+
+      // Simulate async data update
+      $timeout(function () {
+        vm.data = [
+          [28, 48, 40, 19, 86, 27, 90],
+          [65, 59, 80, 81, 56, 55, 40]
+        ];
+      }, 3000);
+
+      // $scope.describeMove = function() {
+      //   console.log('data: ', $scope.data);
+      // }
+      //   console.log('Updating properties on $scope');
+      //   $scope.data = [
+      //     [65, 59, 80, 81, 56, 55, 40],
+      //     [28, 48, 40, 19, 86, 27, 90]
+      //   ];
+
+    })
+    .service('RadarService', function() {
+      this.labels = ["January", "February", "March", "April", "May", "June", "July"];
+      this.series = ['Series A', 'Series B'];
+      this.data = [
+        [65, 59, 80, 81, 56, 55, 40],
+        [28, 48, 40, 19, 86, 27, 90]
+      ];
+      this.changeDataSet = function() {
+        return [
+          [10, 42, 44, 99, 86, 57, 43],
+          [24, 28, 83, 23, 36, 75, 25]
+        ];
+      }
     });
   </script>
 </body>
