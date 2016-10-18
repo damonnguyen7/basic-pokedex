@@ -5,7 +5,7 @@ const async = require('async');
 function pickOffValues(pokemonResponse){
   var pokemonObj = {};
   pokemonObj.id = pokemonResponse.id;
-  pokemonObj.name = pokemonResponse.name[0].toUpperCase() + pokemonResponse.name.slice(1);
+  pokemonObj.name = pokemonResponse.name;
   pokemonObj.height = pokemonResponse.height;
   pokemonObj.weight = pokemonResponse.weight;
   pokemonObj.stats = pokemonResponse.stats.map(function(statType) {
@@ -42,8 +42,8 @@ for(var i = 1; i <= 151; i++){
           return;
         }
         var parsedJson = JSON.parse(data);
-        // var newPokemonObj = pickOffValues(parsedJson);
-        callback(null, parsedJson);
+        var newPokemonObj = pickOffValues(parsedJson);
+        callback(null, newPokemonObj);
       });
     };
   })(i);
@@ -54,7 +54,7 @@ async.series(seriesRequests, function(err, results) {
   if (err) {
     console.log('error:', err);
   } else {
-    fs.writeFile('./pokemonFullData.json', JSON.stringify(results), function (err) {
+    fs.writeFile('./pokemonData.json', JSON.stringify(results), function (err) {
       if (err){
         throw err;
         return;
