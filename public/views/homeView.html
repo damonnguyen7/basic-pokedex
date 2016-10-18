@@ -1,19 +1,19 @@
 <div class="container">
-  <div class="row">
+  <div class="row text-center">
     <h1>Pokédex</h1>
   </div>
   <div class="row">
     <div class="col-xs-4 col-xs-offset-4">
-      <input ng-model="query" ng-change="displayResults()" class="form-control" type="text" placeholder="enter pokemon name"/>
+      <input ng-enter="goToResult()" ng-model="query" ng-change="displayResults()" class="form-control" type="text" placeholder="enter pokemon name"/>
     </div>
     <div class="col-xs-1">
       <i class="fa fa-search fa-2x" aria-hidden="true"></i>
     </div>
   </div>
-  <div ng-if="query.length > 0" class="row">
     <h2>Search Results</h2>
+  <div ng-if="query.length > 0" class="row resultsContainer">
     <ul ng-if="results.length > 0" class="list-group">
-      <li ui-sref="profile({id: pokemon.id})" class="list-group-item" ng-repeat="pokemon in results">{{pokemon.name}}</li>
+      <li ui-sref="profile({id: pokemon.id})" class="list-group-item resultList" ng-repeat="pokemon in results">{{pokemon.name}}</li>
     </ul>
     <div ng-if="results.length === 0">
       No results found...
