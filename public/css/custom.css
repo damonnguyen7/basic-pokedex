@@ -2,3 +2,35 @@
   height: 375px;
   weight: 375px;
 }
+
+.resultsContainer {
+  height: 600px;
+  overflow: scroll;
+}
+
+.listOfMoves {
+  height: 650px;
+  overflow: scroll;
+}
+
+.pokemonNameID {
+  margin-bottom: 50px;
+}
+
+.pokeStatChart {
+  width: 600px;
+  height: 350px;
+}
+
+.radarChart {
+  height: 700px;
+  width: 700px;
+}
+
+.resultList, .moveItem, .back {
+  cursor: pointer;
+}
+
+.resultList:hover, .moveItem:hover {
+  background: #F1F1F1;
+}
