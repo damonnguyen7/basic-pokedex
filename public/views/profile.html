@@ -1,32 +1,46 @@
 <div class="container">
   <div class="row text-center">
-    <span ng-click="goBack()"><-Back</span>
-    <h1>{{pokemonInfo.name}}({{pokemonInfo.id}})</h1>
+    <span class="back" ng-click="goBack()"><-Back</span>
+    <h1 class="pokemonNameID">{{pokemonInfo.name}}({{pokemonInfo.id}})</h1>
   </div>
   <div class="row text-center">
-    <img class="profile-pokemon-img" src="/img/{{pokemonInfo.id}}.png">  
+    <!-- POKEMON PROFILE PICTURE -->
+    <div class="col-xs-4">
+      <img class="profile-pokemon-img" src="/img/{{pokemonInfo.id}}.png">  
+    </div>
+    <div class="row text-center">
+      <div class="col-xs-6">
+        <!-- POKEMON HEIGHT & WEIGHT -->
+        <h5>height: {{pokemonInfo.height}}</h5>
+        <h5>weight: {{pokemonInfo.weight}}</h5>
+        <h1>Basic stats</h1>
+        <!-- POKEMON STAT CHART style="border:1px solid #000000;" --> 
+        <div class="row text-center pokeStatChart">
+          <canvas 
+            id="bar" 
+            class="chart chart-bar" 
+            chart-data="data" 
+            chart-labels="labels" 
+            chart-series="series"
+            chart-colors="colours" 
+            >
+          </canvas>
+        </div>
   </div>
-  <div class="row text-center">
-    <div class="col-xs-12">
-      <h2>height: {{pokemonInfo.height}}</h2>
-      <h2>weight: {{pokemonInfo.weight}}</h2>
-      <h2>Basic stats</h2>
-      <div class="row text-center pokeStatChart">
-        <canvas 
-          id="bar" 
-          class="chart chart-bar" 
-          chart-data="data" 
-          chart-labels="labels" 
-          chart-series="series"
-          chart-colors="colours" 
-          style="border:1px solid #000000;">
-        </canvas>
-      </div>
-    
-      <h2>Moves</h2>
-      <ul class="list-group">
-        <li class="list-group-item" ng-repeat="move in pokemonInfo.moves">{{move}}</li>
-      </ul>
+
+
+    </div>
+
+    <div ng-controller="RadarCtrl" class="row text-center">
+      <!-- POKEMON LIST OF MOVES -->
+      <div class="col-xs-4">
+        <h2>Moves</h2>
+        <ul class="list-group listOfMoves">
+          <li ng-click="onClick()" class="list-group-item moveItem" ng-repeat="move in pokemonInfo.moves">{{move.name}}</li>
+        </ul>
+      </div> 
+      <!-- STATS OF MOVE -->
+      <div class="col-xs-8 radarChart" ui-view="moveDetail"></div>
     </div>
   </div>
   
